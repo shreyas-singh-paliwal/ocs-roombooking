@@ -10,17 +10,6 @@ const allowedOrigins = [
   'https://ocsroombooking.vercel.app'
 ];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-}));
-
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const roomRoutes = require('./routes/rooms');
@@ -29,6 +18,16 @@ const bookingRoutes = require('./routes/bookings');
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+    origin: function(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true
+  }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
