@@ -1,0 +1,79 @@
+.my-bookings h2 {
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border-radius: 8px;
+  border: 1px dashed var(--border-color);
+}
+
+.bookings-table-container {
+  background: var(--bg-card);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-card);
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+}
+
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bookings-table th,
+.bookings-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.bookings-table th {
+  background-color: var(--bg-table-header);
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.bookings-table tr:hover {
+  background-color: var(--bg-hover);
+}
+
+.bookings-table tr.cancelled {
+  opacity: 0.6;
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-badge.confirmed {
+  background-color: var(--badge-active-bg);
+  color: var(--badge-active-text);
+}
+
+.status-badge.cancelled {
+  background-color: var(--badge-inactive-bg);
+  color: var(--badge-inactive-text);
+}
+
+.cancel-btn {
+  background-color: var(--color-error);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.cancel-btn:hover {
+  background-color: var(--color-error-hover);
+}
