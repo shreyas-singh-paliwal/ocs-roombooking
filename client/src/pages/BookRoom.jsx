@@ -26,7 +26,7 @@ const BookRoom = () => {
     setRooms([]);
 
     try {
-      const res = await axios.get('http://localhost:2711/api/bookings/available-rooms', {
+      const res = await axios.get('/api/bookings/available-rooms', {
         params: formData
       });
       setRooms(res.data);
@@ -42,7 +42,7 @@ const BookRoom = () => {
     setError('');
     setSuccess('');
     try {
-      await axios.post('http://localhost:2711/api/bookings', {
+      await axios.post('/api/bookings', {
         ...formData,
         roomId
       });

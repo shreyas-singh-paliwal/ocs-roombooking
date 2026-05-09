@@ -12,7 +12,7 @@ const MyBookings = () => {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get('http://localhost:2711/api/bookings/my-bookings');
+      const res = await axios.get('/api/bookings/my-bookings');
       setBookings(res.data);
     } catch (error) {
       console.error(error);
@@ -24,7 +24,7 @@ const MyBookings = () => {
   const cancelBooking = async (id) => {
     if (!window.confirm('Are you sure you want to cancel this booking?')) return;
     try {
-      await axios.put(`http://localhost:2711/api/bookings/${id}/cancel`);
+      await axios.put(`/api/bookings/${id}/cancel`);
       fetchBookings();
     } catch (error) {
       alert('Failed to cancel booking');

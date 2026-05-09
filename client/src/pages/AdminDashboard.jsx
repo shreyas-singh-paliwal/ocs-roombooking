@@ -21,13 +21,13 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     try {
       if (activeTab === 'users') {
-        const res = await axios.get('http://localhost:2711/api/users');
+        const res = await axios.get('/api/users');
         setUsers(res.data);
       } else if (activeTab === 'rooms') {
-        const res = await axios.get('http://localhost:2711/api/rooms');
+        const res = await axios.get('/api/rooms');
         setRooms(res.data);
       } else if (activeTab === 'bookings') {
-        const res = await axios.get('http://localhost:2711/api/bookings/all');
+        const res = await axios.get('/api/bookings/all');
         setBookings(res.data);
       }
     } catch (error) {
@@ -38,7 +38,7 @@ const AdminDashboard = () => {
   const createUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:2711/api/users', userForm);
+      await axios.post('/api/users', userForm);
       setMessage('User created successfully');
       setUserForm({ email: '', password: '', name: '', role: 'core' });
       fetchData();
@@ -50,7 +50,7 @@ const AdminDashboard = () => {
   const createRoom = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:2711/api/rooms', {
+      await axios.post('/api/rooms', {
         ...roomForm,
         capacity: parseInt(roomForm.capacity)
       });
@@ -64,7 +64,7 @@ const AdminDashboard = () => {
 
   const toggleUserStatus = async (id, currentStatus) => {
     try {
-      await axios.put(`http://localhost:2711/api/users/${id}`, { isActive: !currentStatus });
+      await axios.put(`/api/users/${id}`, { isActive: !currentStatus });
       fetchData();
     } catch (error) {
       alert('Failed to update user');
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
   const cancelBooking = async (id) => {
     if (!window.confirm('Cancel this booking?')) return;
     try {
-      await axios.put(`http://localhost:2711/api/bookings/${id}/admin-cancel`);
+      await axios.put(`/api/bookings/${id}/admin-cancel`);
       fetchData();
     } catch (error) {
       alert('Failed to cancel booking');
