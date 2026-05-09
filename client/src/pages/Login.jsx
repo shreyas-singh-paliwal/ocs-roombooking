@@ -11,20 +11,24 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setLoading(true);       
     try {
       await login(email, password);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed');
+    } finally {
+      setLoading(false);  
     }
   };
 
   return (
     <div className="login-page">
-      {/* Left Panel - Branding */}
       <div className="login-left">
         <div className="login-branding">
           <img src={logo} alt="OCS Logo" className="login-logo-large" />
@@ -37,7 +41,6 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right Panel - Form */}
       <div className="login-right">
         <div className="login-form-box">
           <h2>Welcome Back</h2>
@@ -68,7 +71,9 @@ const Login = () => {
               />
             </div>
 
-            <button type="submit" className="login-submit">Sign In</button>
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? 'Signing in...' : 'Sign In'}
+            </button>
           </form>
 
           <div className="login-hint">
