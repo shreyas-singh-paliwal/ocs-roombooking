@@ -12,11 +12,11 @@ export default defineConfig(({ mode }) => ({
       }
     }
   },
-  // This replaces /api calls with the Render URL in production
+
   define: {
     __API_URL__: JSON.stringify(
       mode === 'production' 
-        ? 'https://your-render-app.onrender.com' 
+        ? 'https://ocs-roombooking-api.onrender.com/' 
         : ''
     )
   }

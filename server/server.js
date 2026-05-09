@@ -1,7 +1,25 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const connectDB = require('./config/db');
+
+const cors = require('cors');
+
+const allowedOrigins = [
+  'http://localhost:2712',
+  'http://localhost:3000',
+  'https://ocsroombooking.vercel.app'
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
@@ -10,7 +28,6 @@ const bookingRoutes = require('./routes/bookings');
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
